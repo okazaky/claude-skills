@@ -1,0 +1,61 @@
+name: 実装依頼（AIに渡すイシュー）
+description: AIに1つの作業を頼むときの標準フォーマット。4項目を埋めてから使う。
+title: "[Task] "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 使い方
+        - このイシューは **1つのPRで収まる小さな作業** に絞ってください（目安: 変更行数 500行以内）。
+        - 大きな依頼は、先にこのイシューを2〜3個に分割してから書いてください。
+        - 「受け入れ条件」はチェックボックスにできるくらい具体的に書いてください。ここが曖昧だと、AIが作業を中途半端なところで「完了」と判断してしまいます。
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 何をやりたいか
+      description: 実現したいことを1〜2文で
+      placeholder: "例: 商品一覧ページに「安い順」「高い順」の並び替えボタンを追加する"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: なぜやりたいか
+      description: 背景・理由。なぜ今これが必要か
+      placeholder: "例: お客さんが安い順に見たいのに、今は決まった順番でしか表示されないため"
+    validations:
+      required: true
+
+  - type: textarea
+    id: todo
+    attributes:
+      label: TODO
+      description: やることを箇条書きで
+      placeholder: |
+        - 並び替えボタンを2つ設置する
+        - ボタン押下で表示順を切り替える
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 受け入れ条件
+      description: "「これができたら完了」をチェックボックスで書く。「良い感じにする」のような曖昧な表現は禁止。"
+      placeholder: |
+        - [ ] 「安い順」ボタンを押すと、金額が小さい順に商品が並ぶ
+        - [ ] 「高い順」ボタンを押すと、金額が大きい順に商品が並ぶ
+        - [ ] スマホ画面でもボタンが見える位置にある
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: size_check
+    attributes:
+      label: 規模チェック
+      options:
+        - label: この依頼は1つのPR（目安 500行以内）で完結する規模である
+          required: true
